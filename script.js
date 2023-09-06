@@ -1,24 +1,20 @@
-//your code here
-
 let bandNames=['The Virupaksha Temple', 'Victoria Memorial', 'Tajmahal']
-
-function sortBandNames(names) {
-	const articles=['a','an','the'];
-	return names.sort((a,b)=>{
-		const aName=a.toLowerCase().replace(/^(the|a|an) /,'');
-		const bName=b.toLowerCase().replace(/^(the|a|an) /,'');
-		return aName.toLocalCompare(bName);
-	});
-	
+let articles = ['A', 'AN', 'THE']
+ 
+	bandNames.sort((a,b) => (strip(a)> strip(b))? 1: -1)
+	const ref= document.getElementsByTagName("ul")[0] 
+	for (let i=0;i<bandNames.length; i++){
+		const li = document.createElement("li")
+		li.innerText= bandNames [i]
+		ref.append(li)
+	}
+function strip(word){
+	let arr = word.split(" ")
+	let s=""
+	for(let i=0;i<arr.length;i++){
+if(articles.indexOf(arr[i].toUpperCase()) === -1){
+	s=s+arr[i]
 }
-
-const sortedbandnames = sortBandNames(bandNames);
-
-const ulElement = document.getElementById('band');
-
-sortedbandnames.forEach(name=>{
-	const liElement=document.createElement('li');
-	liElement.textContent=name;
-	ulElement.appendchild(liElement);
-}) ;
-	
+}
+return s.trim()
+}
